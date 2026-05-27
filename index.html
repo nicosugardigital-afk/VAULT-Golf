@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VAULT — Indoor Golf Club · Members Only</title>
+<meta name="description" content="VAULT Indoor Golf Club Köln — ein privater Members-Only Club. Eröffnung Herbst 2026. Sichern Sie sich Ihren Platz auf der exklusiven Warteliste." />
+<meta property="og:title" content="VAULT — Indoor Golf Club" />
+<meta property="og:description" content="Members Only. Eröffnung Herbst 2026. Warteliste jetzt geöffnet." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Archivo:wght@600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+</head>
+<body>
+
+<!-- Brushed metal SVG filter (defs only) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="brushed" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9 0.015" numOctaves="2" seed="7" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 0.62
+                             0 0 0 0 0.62
+                             0 0 0 0 0.64
+                             0 0 0 0.85 0"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="1" intercept="0"/>
+      </feComponentTransfer>
+    </filter>
+    <filter id="brushed-dark">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85 0.012" numOctaves="2" seed="3" stitchTiles="stitch"/>
+      <feColorMatrix values="0 0 0 0 0.18
+                             0 0 0 0 0.18
+                             0 0 0 0 0.2
+                             0 0 0 0.9 0"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- Brushed metal background layers -->
+<div class="bg-layer" aria-hidden="true">
+  <div class="bg-metal"></div>
+  <div class="bg-stripes"></div>
+  <div class="bg-metal-overlay"></div>
+  <div class="bg-vignette"></div>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#" class="logo" aria-label="VAULT Indoor Golf Club">
+      <img src="Vault-Logos/PNG/Vault-Wort-Bildmarke-horizontal-weiss.png" alt="VAULT Indoor Golf Club" class="logo-img" />
+    </a>
+    <div class="status-pill">
+      <span class="pill-text-full">Eröffnung Herbst 2026</span>
+      <span class="pill-text-short">Herbst 2026</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-eyebrow">
+        <span>Privater Indoor Golf Club · Köln</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="title-row">DER PRIVATE</span>
+        <span class="title-row outline">INDOOR GOLF</span>
+        <span class="title-row">CLUB.</span>
+      </h1>
+
+      <p class="hero-tagline">
+        Hinter verschlossenen Türen. Auf Einladung. <br/>
+        Ein Ort für Spieler, die mehr suchen als einen Abschlag.
+      </p>
+
+      <div class="hero-meta">
+        <div class="meta-item">
+          <div class="meta-label">Eröffnung</div>
+          <div class="meta-value">September 2026</div>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <div class="meta-label">Mitgliedschaften</div>
+          <div class="meta-value">Streng limitiert</div>
+        </div>
+        <div class="meta-divider"></div>
+        <div class="meta-item">
+          <div class="meta-label">Zugang</div>
+          <div class="meta-value">Nur per Einladung</div>
+        </div>
+      </div>
+
+      <a href="#warteliste" class="cta-anchor">
+        <span>Auf die Warteliste</span>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- MANIFEST / TEASER -->
+  <section class="manifest">
+    <div class="container manifest-inner">
+      <div class="manifest-head">
+        <span class="kicker">Das Konzept</span>
+        <h2>Ein Ort, der nicht<br/>für jeden gemacht ist.</h2>
+      </div>
+      <div class="manifest-body">
+        <p>
+          VAULT ist kein Golfsimulator. VAULT ist ein Club. Ein geschützter Raum für eine
+          kleine Anzahl von Mitgliedern, die ihr Spiel ernst nehmen — und den Rahmen drumherum genauso.
+        </p>
+        <p class="muted">
+          Was zwischen diesen Wänden passiert, bleibt unter Mitgliedern.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="pillars">
+    <div class="container">
+      <div class="pillars-grid">
+        <article class="pillar border-glow-card">
+          <span class="edge-light"></span>
+          <div class="border-glow-inner">
+            <div class="pillar-num">I.</div>
+            <h3>Modernste Trackman-Suites</h3>
+            <p>Privatkabinen mit ungestörter Atmosphäre. Spielbereit rund um die Uhr, sieben Tage die Woche.</p>
+          </div>
+        </article>
+        <article class="pillar border-glow-card">
+          <span class="edge-light"></span>
+          <div class="border-glow-inner">
+            <div class="pillar-num">II.</div>
+            <h3>Members Lounge</h3>
+            <p>Bar, Humidor, ausgewählte Spirituosen. Ein Raum, in dem Geschäft und Spiel ineinandergreifen.</p>
+          </div>
+        </article>
+        <article class="pillar border-glow-card">
+          <span class="edge-light"></span>
+          <div class="border-glow-inner">
+            <div class="pillar-num">III.</div>
+            <h3>Streng limitiert</h3>
+            <p>Die Anzahl der Mitgliedschaften ist bewusst klein gehalten. Jeder Slot wird persönlich geprüft.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST -->
+  <section class="waitlist" id="warteliste">
+    <div class="container waitlist-inner">
+      <div class="waitlist-head">
+        <span class="kicker">Warteliste</span>
+        <h2>Die Warteliste<br/>ist geöffnet.</h2>
+        <p class="waitlist-sub">
+          Tragen Sie sich ein. Wir melden uns persönlich, sobald die ersten Mitgliedschaften vergeben werden.
+          Plätze werden in der Reihenfolge der Eintragung berücksichtigt.
+        </p>
+      </div>
+
+      <div class="form-glow-wrap border-glow-card">
+        <span class="edge-light"></span>
+        <div class="border-glow-inner">
+
+          <form class="waitlist-form" id="waitlistForm" novalidate>
+            <div class="form-row two">
+              <label class="field">
+                <span class="field-label">Vorname</span>
+                <input type="text" name="firstName" autocomplete="given-name" required />
+              </label>
+              <label class="field">
+                <span class="field-label">Nachname</span>
+                <input type="text" name="lastName" autocomplete="family-name" required />
+              </label>
+            </div>
+            <div class="form-row two">
+              <label class="field">
+                <span class="field-label">E-Mail</span>
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+              <label class="field">
+                <span class="field-label">Telefon (optional)</span>
+                <input type="tel" name="phone" autocomplete="tel" />
+              </label>
+            </div>
+            <div class="form-row two">
+              <label class="field">
+                <span class="field-label">Handicap (optional)</span>
+                <input type="text" name="handicap" placeholder="z.B. 18,4" />
+              </label>
+              <label class="field">
+                <span class="field-label">Empfohlen durch (optional)</span>
+                <input type="text" name="referral" />
+              </label>
+            </div>
+
+            <label class="checkbox">
+              <input type="checkbox" name="consent" required />
+              <span>Ich bin mit der Kontaktaufnahme zur Mitgliedschaft einverstanden und habe die <a href="#datenschutz">Datenschutzhinweise</a> gelesen.</span>
+            </label>
+
+            <button type="submit" class="submit-btn">
+              <span class="btn-label">Eintrag sichern</span>
+              <span class="btn-arrow">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </button>
+
+            <p class="form-note">Sie erhalten eine E-Mail, sobald Ihr Platz freigegeben wird.</p>
+          </form>
+
+          <div class="success-state" id="successState" hidden>
+            <div class="success-mark" aria-hidden="true">
+              <svg viewBox="0 0 60 60" width="60" height="60" fill="none" stroke="currentColor" stroke-width="2"><circle cx="30" cy="30" r="28"/><path d="M18 31 L27 40 L43 22"/></svg>
+            </div>
+            <h3>Sie stehen auf der Liste.</h3>
+            <p>Eine Bestätigung ist unterwegs. Wir melden uns persönlich, sobald der Club seine Türen öffnet.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="Vault-Logos/PNG/Vault-Bildmarke-weiss.png" alt="" class="footer-logo-mark" aria-hidden="true" />
+      <span>VAULT · Indoor Golf Club</span>
+    </div>
+    <div class="footer-meta">
+      <span>Köln · Deutschland</span>
+      <span class="sep">·</span>
+      <span>Eröffnung Herbst 2026</span>
+    </div>
+    <div class="footer-links">
+      <a href="datenschutz.html">Datenschutz</a>
+      <a href="impressum.html">Impressum</a>
+    </div>
+  </div>
+</footer>
+
+<iframe name="vault-sink" style="display:none" aria-hidden="true" tabindex="-1"></iframe>
+<script src="script.js"></script>
+</body>
+</html>
