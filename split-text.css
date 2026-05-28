@@ -10,6 +10,11 @@
   a calculated transition-delay for the stagger.
 */
 
+/* Prevent mid-word wrapping when characters are split into inline spans */
+.hero-title .title-row {
+  white-space: nowrap;
+}
+
 .st-char {
   display: inline;
   opacity: 0;
