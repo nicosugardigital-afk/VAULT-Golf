@@ -1,0 +1,32 @@
+/* ─── GlareHover Effect ──────────────────────────────────────────────────────
+   Applied to .hero-meta via glare-hover.js.
+   The overlay div is injected by JS; this file only provides the styles.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.glare-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  /* Width is intentionally oversized (250% of parent) so the streak sweeps
+     fully across the element without clipping on either edge. */
+  width: 250%;
+  /* Keep the element centred on its own axis so translateX(0%) = centre. */
+  left: -75%;
+  background: linear-gradient(
+    -30deg,
+    transparent           20%,
+    rgba(255,255,255,0.25) 50%,
+    transparent           80%
+  );
+  /* Both opacity and transform share the same timing so they move together. */
+  transition: transform 800ms ease, opacity 800ms ease;
+  will-change: transform, opacity;
+  border-radius: inherit; /* respect any rounded corners on the parent */
+}
+
+/* State driven by JS: element is visible while mouse is inside */
+.glare-overlay.glare-active {
+  opacity: 1;
+}

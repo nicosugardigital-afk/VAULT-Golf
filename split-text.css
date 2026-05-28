@@ -1,0 +1,35 @@
+/* ==========================================
+   VAULT — SplitText animation
+   Letter-by-letter hero title reveal
+   ========================================== */
+
+/*
+  Each character gets wrapped in a .st-char span.
+  Initial state: hidden and shifted down.
+  The .is-visible state is applied via JS with
+  a calculated transition-delay for the stagger.
+*/
+
+.st-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity  1000ms cubic-bezier(0.215, 0.61, 0.355, 1),
+    transform 1000ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  /* Prevent text-decoration gaps on .outline spans */
+  text-decoration: inherit;
+}
+
+.st-char.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*
+  Space characters are invisible but still occupy width.
+  We rely on the default inline-block behaviour —
+  no extra rules needed since opacity 0 already hides them.
+  A non-breaking space ( ) is used in JS so the
+  browser does not collapse the whitespace.
+*/

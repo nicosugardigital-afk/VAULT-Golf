@@ -1,0 +1,64 @@
+/* ============================================================
+   VAULT — Circular Spinning Text Widget
+   Fixed bottom-right corner decoration
+   ============================================================ */
+
+.circular-text-widget {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 120px;
+  height: 120px;
+  z-index: 100;
+  cursor: default;
+  /* Prevent accidental text selection while spinning */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.circular-text-ring {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: circular-text-spin 20s linear infinite;
+  /* Smooth transition when hover toggles animation-duration */
+  transition: animation-duration 0.6s ease;
+}
+
+.circular-text-ring.fast {
+  animation-duration: 4s;
+}
+
+.circular-text-ring span {
+  position: absolute;
+  /* Centre the span's origin at the widget's centre */
+  top: 50%;
+  left: 50%;
+  /* Pull the span back to its own centre so translateY shoots
+     outward from the true middle of the container */
+  margin-top: -0.5em;
+  margin-left: -0.25em;
+  transform-origin: center center;
+
+  font-family: 'Inter', 'Archivo', system-ui, sans-serif;
+  font-size: 10px;
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1;
+  /* Keep each character crisp */
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes circular-text-spin {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+/* Hide on mobile — avoid overlapping footer / form */
+@media (max-width: 767px) {
+  .circular-text-widget {
+    display: none;
+  }
+}

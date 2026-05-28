@@ -1,0 +1,440 @@
+/* ==========================================
+   VAULT — Lanyard / 3D Membership Card
+   ========================================== */
+
+/* ===== Hero layout override ===== */
+/* On desktop (≥1024px), hero-inner becomes a horizontal row */
+@media (min-width: 1024px) {
+  .hero-inner {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 80px !important;
+    text-align: left !important;
+    max-width: 1200px !important;
+  }
+
+  /* hero content takes remaining space */
+  .hero-content {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* left-align text elements that were centered */
+  .hero-content .hero-eyebrow {
+    margin-left: 0;
+  }
+
+  .hero-content .hero-tagline {
+    margin-left: 0;
+    max-width: 520px;
+  }
+
+  .hero-content .hero-meta {
+    display: inline-flex;
+    justify-content: flex-start;
+  }
+
+  .hero-content .cta-anchor {
+    align-self: flex-start;
+  }
+}
+
+/* On mobile, column layout, lanyard above content */
+@media (max-width: 1023px) {
+  .hero-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+}
+
+/* ===== Lanyard Wrap ===== */
+.lanyard-wrap {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* perspective for child 3D transforms */
+  perspective: 900px;
+  perspective-origin: 50% 0%;
+  /* slightly above vertical center so the card hangs naturally */
+  padding-top: 8px;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.lanyard-wrap:active {
+  cursor: grabbing;
+}
+
+/* ===== Lanyard attach point (hole at very top) ===== */
+.lanyard-hook {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid #4a4a50;
+  box-shadow:
+    inset 0 1px 3px rgba(0,0,0,0.8),
+    0 1px 2px rgba(255,255,255,0.06);
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Lanyard Band ===== */
+.lanyard-band {
+  width: 10px;
+  height: 80px;
+  background: linear-gradient(
+    90deg,
+    #1a1a1e 0%,
+    #2e2e34 20%,
+    #3a3a40 40%,
+    #2a2a30 60%,
+    #222228 80%,
+    #1a1a1e 100%
+  );
+  /* subtle stripe pattern on top of the gradient */
+  background-image:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 4px,
+      rgba(255,255,255,0.04) 4px,
+      rgba(255,255,255,0.04) 5px
+    ),
+    linear-gradient(
+      90deg,
+      #1a1a1e 0%,
+      #2e2e34 20%,
+      #3a3a40 40%,
+      #2a2a30 60%,
+      #222228 80%,
+      #1a1a1e 100%
+    );
+  border-radius: 0 0 2px 2px;
+  position: relative;
+  z-index: 1;
+  transform-origin: top center;
+  /* band transform is updated by JS to skew/stretch with card swing */
+  transition: transform 0.08s linear;
+  box-shadow:
+    -1px 0 0 rgba(0,0,0,0.5),
+    1px 0 0 rgba(0,0,0,0.5);
+}
+
+/* ===== Lanyard Clip ===== */
+.lanyard-clip {
+  width: 18px;
+  height: 10px;
+  background: linear-gradient(
+    180deg,
+    #4a4a52 0%,
+    #303036 40%,
+    #282830 60%,
+    #3a3a42 100%
+  );
+  border-radius: 3px 3px 2px 2px;
+  position: relative;
+  z-index: 1;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+  /* small internal "clip gap" line */
+  overflow: hidden;
+}
+
+.lanyard-clip::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 6px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.7);
+}
+
+/* ===== Card hole at top ===== */
+.card-hole {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #050507 0%,
+    #0a0a0c 50%,
+    rgba(0,0,0,0) 100%
+  );
+  border: 1px solid rgba(0,0,0,0.9);
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.9),
+    0 1px 2px rgba(255,255,255,0.05);
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+/* ===== Lanyard Card ===== */
+.lanyard-card {
+  width: 200px;
+  height: 320px;
+  border-radius: 16px;
+  position: relative;
+  transform-style: preserve-3d;
+  /* smooth out JS-applied transforms slightly */
+  will-change: transform;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.65),
+    0 8px 24px rgba(0,0,0,0.4),
+    0 0 0 1px rgba(255,255,255,0.10);
+  background:
+    /* sheen highlight */
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.06) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(255,255,255,0.03) 100%
+    ),
+    /* brushed metal base */
+    linear-gradient(
+      160deg,
+      #222226 0%,
+      #2e2e34 25%,
+      #1e1e22 50%,
+      #2a2a30 75%,
+      #181820 100%
+    );
+  overflow: hidden;
+  cursor: grab;
+}
+
+.lanyard-card:active {
+  cursor: grabbing;
+}
+
+/* Card front face — contains all content */
+.lanyard-card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 44px 20px 24px;
+  box-sizing: border-box;
+}
+
+/* Subtle brushed horizontal lines across card surface */
+.lanyard-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(255,255,255,0.025) 2px,
+      rgba(255,255,255,0.025) 3px
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Specular light sheen that moves with tilt */
+.lanyard-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.12) 0%,
+    rgba(255,255,255,0.04) 30%,
+    transparent 55%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ===== Card Logo ===== */
+.card-logo {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  position: relative;
+  z-index: 2;
+  /* subtle drop shadow to lift off card surface */
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+  opacity: 0.95;
+}
+
+/* ===== Card Body (middle) ===== */
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Divider line */
+.card-divider {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.3),
+    transparent
+  );
+}
+
+/* MEMBERS ONLY label */
+.card-text {
+  font-family: 'Archivo', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Card Bottom ===== */
+.card-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* Köln · 2026 */
+.card-sub {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.38);
+  text-align: center;
+}
+
+/* Bottom decorative line */
+.card-bar {
+  width: 32px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.2),
+    transparent
+  );
+  border-radius: 1px;
+}
+
+/* ===== Card border outline ===== */
+.lanyard-card-outline {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ===== Mobile card sizing ===== */
+@media (max-width: 1023px) {
+  .lanyard-wrap {
+    margin-bottom: 8px;
+  }
+
+  .lanyard-card {
+    width: 160px;
+    height: 256px;
+  }
+
+  .lanyard-card-face {
+    padding: 38px 16px 20px;
+  }
+
+  .card-logo {
+    width: 110px;
+  }
+
+  .card-text {
+    font-size: 9.5px;
+    letter-spacing: 0.32em;
+  }
+
+  .card-hole {
+    top: 12px;
+    width: 13px;
+    height: 13px;
+  }
+
+  .lanyard-band {
+    height: 60px;
+    width: 8px;
+  }
+}
+
+/* ===== Interaction hint fade ===== */
+.lanyard-wrap .lanyard-hint {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.22);
+  white-space: nowrap;
+  pointer-events: none;
+  animation: hint-fade 3s ease 1.5s forwards;
+  opacity: 0;
+}
+
+@keyframes hint-fade {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(0); }
+  20%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  80%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(4px); }
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  .lanyard-band {
+    transition: none;
+  }
+  .lanyard-wrap .lanyard-hint {
+    display: none;
+  }
+}
