@@ -1,0 +1,5 @@
+# Source video clips — not tracked; optimised outputs in media/ are tracked
+media-source/
+
+# macOS
+.DS_Store

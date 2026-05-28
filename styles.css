@@ -52,6 +52,26 @@ a { color: inherit; text-decoration: none; }
 }
 .site-header, main, .site-footer { position: relative; z-index: 1; }
 
+/* Background video — exact replacement for .beams-canvas (first child of .bg-layer) */
+.bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-video { display: none; }
+  .bg-layer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('media/poster.jpg') center/cover no-repeat;
+  }
+}
+
 /* Basis-Metallfläche + brushed-Streifen in einem Layer (alles ohne mix-blend-mode) */
 .bg-metal {
   position: absolute;
@@ -64,7 +84,7 @@ a { color: inherit; text-decoration: none; }
       rgba(255,255,255,0.14) 52%,
       rgba(255,255,255,0.06) 58%,
       transparent 80%),
-    /* hellere Basis-Lichtverteilung — semi-transparent damit Beams darunter sichtbar sind */
+    /* hellere Basis-Lichtverteilung — semi-transparent damit Video darunter sichtbar ist */
     radial-gradient(ellipse 120% 90% at 25% 10%, rgba(90,90,96,0.82) 0%, rgba(66,66,71,0.75) 18%, rgba(42,42,48,0.65) 42%, rgba(22,22,26,0.52) 70%, rgba(10,10,12,0.38) 100%);
 }
 
