@@ -13,7 +13,7 @@
 
 (function initCircularText() {
   const TEXT   = 'VAULT*INDOOR*GOLF*MEMBERS*ONLY*CLUB*';
-  const RADIUS = 46; // px — distance from centre to character baseline
+  const RADIUS = window.innerWidth < 768 ? 30 : 46; // smaller on mobile
 
   // ── Build DOM ──────────────────────────────────────────────
 

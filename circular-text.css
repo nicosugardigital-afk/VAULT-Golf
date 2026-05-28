@@ -56,9 +56,12 @@
   to   { transform: rotate(360deg); }
 }
 
-/* Hide on mobile — avoid overlapping footer / form */
+/* Smaller on mobile */
 @media (max-width: 767px) {
   .circular-text-widget {
-    display: none;
+    width: 80px;
+    height: 80px;
+    bottom: 20px;
+    right: 20px;
   }
 }
