@@ -9,12 +9,12 @@
   'use strict';
 
   var BEAM_WIDTH      = 2;
-  var BEAM_HEIGHT     = 18;
+  var BEAM_HEIGHT     = 15;
   var BEAM_NUMBER     = 12;
-  var SPEED           = 1.8;
-  var NOISE_INTENSITY = 2.5;
+  var SPEED           = 0.9;
+  var NOISE_INTENSITY = 1.75;
   var SCALE           = 0.2;
-  var ROTATION_DEG    = -40;
+  var ROTATION_DEG    = -15;
 
   /* ── GLSL snippets ─────────────────────────────────────────── */
   var NOISE_GLSL = [
@@ -141,16 +141,11 @@
     var bgLayer = document.querySelector('.bg-layer');
     if (!bgLayer) return;
 
-    /* Insert canvas AFTER .bg-metal so it sits on top of the metal
-       texture. mix-blend-mode:screen in CSS makes black = transparent. */
+    /* Insert canvas as FIRST child — behind all background overlays.
+       The semi-transparent bg-metal gradient sits on top as shadow. */
     var canvas  = document.createElement('canvas');
     canvas.className = 'beams-canvas';
-    var bgMetal = bgLayer.querySelector('.bg-metal');
-    if (bgMetal) {
-      bgLayer.insertBefore(canvas, bgMetal.nextSibling);
-    } else {
-      bgLayer.insertBefore(canvas, bgLayer.firstChild);
-    }
+    bgLayer.insertBefore(canvas, bgLayer.firstChild);
 
     var w = window.innerWidth, h = window.innerHeight;
     var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false, alpha: false });

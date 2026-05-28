@@ -4,6 +4,5 @@
   width: 100%;
   height: 100%;
   display: block;
-  /* Black pixels = transparent, bright beams add to the background */
-  mix-blend-mode: screen;
+  /* No blend mode — background layers sit on top as natural shadows */
 }
