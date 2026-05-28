@@ -4,7 +4,6 @@
   width: 100%;
   height: 100%;
   display: block;
-  /* No blend mode needed — transparent canvas composites naturally.
-     Opacity keeps beams subtle over the metal background. */
-  opacity: 0.75;
+  /* Black pixels = transparent, bright beams add to the background */
+  mix-blend-mode: screen;
 }

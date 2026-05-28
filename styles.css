@@ -184,6 +184,7 @@ a { color: inherit; text-decoration: none; }
   min-height: 92vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: clamp(60px, 12vh, 120px) 0 clamp(60px, 8vh, 100px);
   position: relative;
 }
@@ -217,6 +218,9 @@ a { color: inherit; text-decoration: none; }
 .title-row {
   display: block;
   white-space: nowrap;
+  /* Compensate for letter-spacing: -0.02em which adds invisible
+     negative space after the last char, shifting text visually right */
+  padding-right: 0.02em;
 }
 .title-row.outline {
   -webkit-text-stroke: 2px var(--ink);
