@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Always start at the top on load/reload — prevents browser scroll-restore -->
+<script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; window.scrollTo(0, 0);</script>
 <title>VAULT — Indoor Golf Club · Members Only</title>
 <meta name="description" content="VAULT Indoor Golf Club Köln — ein privater Members-Only Club. Eröffnung Herbst 2026. Sichern Sie sich Ihren Platz auf der exklusiven Warteliste." />
 <meta property="og:title" content="VAULT — Indoor Golf Club" />
@@ -15,7 +17,10 @@
 <link rel="stylesheet" href="split-text.css" />
 <link rel="stylesheet" href="circular-text.css" />
 <link rel="stylesheet" href="glare-hover.css" />
+<link rel="stylesheet" href="golf-ball.css" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js" defer></script>
+<script src="golf-ball.js" defer></script>
 </head>
 <body>
 
@@ -48,10 +53,19 @@
     <source src="media/bg-720.webm" type="video/webm" />
     <source src="media/bg-720.mp4" type="video/mp4" />
   </video>
+  <!-- Vault promo video — loaded lazily when user scrolls near manifest -->
+  <video class="bg-vault-video" id="vaultVideo" muted playsinline preload="none">
+    <source src="vault-golfball-one-shot.mp4" type="video/mp4" />
+  </video>
   <div class="bg-metal"></div>
   <div class="bg-stripes"></div>
   <div class="bg-metal-overlay"></div>
   <div class="bg-vignette"></div>
+</div>
+
+<!-- 3D Golf Ball — logo is baked into the Three.js texture -->
+<div id="vault-ball-wrap" aria-hidden="true">
+  <canvas id="vault-ball-canvas"></canvas>
 </div>
 
 <header class="site-header">
@@ -59,10 +73,6 @@
     <a href="#" class="logo" aria-label="VAULT Indoor Golf Club">
       <img src="Vault-Logos/PNG/Vault-Wort-Bildmarke-horizontal-weiss.png" alt="VAULT Indoor Golf Club" class="logo-img" />
     </a>
-    <div class="status-pill">
-      <span class="pill-text-full">Eröffnung Herbst 2026</span>
-      <span class="pill-text-short">Herbst 2026</span>
-    </div>
   </div>
 </header>
 
@@ -70,14 +80,11 @@
   <!-- HERO -->
   <section class="hero">
     <div class="container hero-inner">
-      <div class="hero-eyebrow">
-        <span>Privater Indoor Golf Club · Köln</span>
-      </div>
 
       <h1 class="hero-title">
         <span class="title-row">DER PRIVATE</span>
         <span class="title-row outline">INDOOR GOLF</span>
-        <span class="title-row">CLUB.</span>
+        <span class="title-row club-row">CLUB.</span>
       </h1>
 
       <p class="hero-tagline">
@@ -85,26 +92,9 @@
         Ein Ort für Spieler, die mehr suchen als einen Abschlag.
       </p>
 
-      <div class="hero-meta">
-        <div class="meta-item">
-          <div class="meta-label">Eröffnung</div>
-          <div class="meta-value">September 2026</div>
-        </div>
-        <div class="meta-divider"></div>
-        <div class="meta-item">
-          <div class="meta-label">Mitgliedschaften</div>
-          <div class="meta-value">Streng limitiert</div>
-        </div>
-        <div class="meta-divider"></div>
-        <div class="meta-item">
-          <div class="meta-label">Zugang</div>
-          <div class="meta-value">Nur per Einladung</div>
-        </div>
-      </div>
-
-      <a href="#warteliste" class="cta-anchor">
+      <a href="#warteliste" class="cta-anchor border-glow-card">
+        <span class="edge-light"></span>
         <span>Auf die Warteliste</span>
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
   </section>

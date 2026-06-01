@@ -16,8 +16,8 @@
 (function () {
   'use strict';
 
-  var STAGGER_MS   = 50;   // delay increment between characters
-  var DURATION_MS  = 1000; // matches transition duration in split-text.css
+  var STAGGER_MS   = 25;   // delay increment between characters (50 % faster)
+  var DURATION_MS  = 500;  // matches transition duration in split-text.css
 
   /**
    * Split the text content of a .title-row span into individual
