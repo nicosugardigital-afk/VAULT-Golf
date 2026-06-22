@@ -62,12 +62,18 @@
 }
 .bg-vault-video.active { opacity: 1; }
 
+/* Smooth transitions for metal layers in both directions */
+.bg-metal,
+.bg-stripes,
+.bg-metal-overlay {
+  transition: opacity 1.3s ease;
+}
+
 /* Fade metal layers when vault video activates */
 .bg-layer.vault-active .bg-metal,
 .bg-layer.vault-active .bg-stripes,
 .bg-layer.vault-active .bg-metal-overlay {
   opacity: 0;
-  transition: opacity 1.3s ease;
 }
 
 /* Vignette stays on top of vault video (readable text) */

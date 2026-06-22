@@ -318,10 +318,14 @@
     promoVid.play().catch(function () {});
     promoVid.classList.add('active');
 
-    // Stop on last frame — no loop, no restart
+    // Stop on last frame, then after 10 s fade back to color background
     promoVid.addEventListener('ended', function () {
       promoVid.pause();
-      // Keep last frame visible (video stays at end)
+      setTimeout(function () {
+        promoVid.classList.remove('active');   // fade out promo (B&W)
+        bgVid   && bgVid.classList.remove('fading');        // fade bg video back in (color)
+        bgLayer && bgLayer.classList.remove('vault-active'); // restore metal overlays
+      }, 10000);
     }, { once: true });
   }
 

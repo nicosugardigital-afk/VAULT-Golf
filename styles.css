@@ -64,7 +64,6 @@ main, .site-footer { z-index: 2; }
   object-fit: cover;
   object-position: center;
   display: block;
-  filter: grayscale(100%);
 }
 @media (prefers-reduced-motion: reduce) {
   .bg-video { display: none; }
