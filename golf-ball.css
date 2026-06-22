@@ -58,7 +58,7 @@
   opacity: 0;
   transition: opacity 1.3s ease;
   z-index: 2;                    /* above .bg-video in bg-layer */
-  filter: grayscale(100%);       /* black & white to match site aesthetic */
+  filter: none;
 }
 .bg-vault-video.active { opacity: 1; }
 
